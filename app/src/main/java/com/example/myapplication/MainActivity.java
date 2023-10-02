@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private String numeroGuardado;
     private int numeroAdivinar;
     private TextView historialTextView;
+
+    private TextView TotalAdv;
+    private int totalAciertos = 0;
     private List<String> historialList = new ArrayList<>();
 
     @Override
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         historialTextView = findViewById(R.id.historialTextView);
         historialTextView.setText("Historial:");
+
+        TotalAdv = findViewById(R.id.totalAdv);
+
 
         button = findViewById(R.id.button);
         editTextNumber = findViewById(R.id.editTextNumber);
@@ -100,13 +106,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void actualizarHistorial() {
         StringBuilder historial = new StringBuilder("Historial:\n");
+        totalAciertos = 0;
         for (String numero : historialList) {
             historial.append(numero).append("\n");
+            totalAciertos++;
         }
+        actualizarTotal();
         historialTextView.setText(historial.toString());
     }
 
 
+    private void actualizarTotal() {
+        TotalAdv.setText("Total de aciertos: " + totalAciertos);
+    }
 
 
 
